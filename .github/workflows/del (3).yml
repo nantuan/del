@@ -16,9 +16,9 @@ jobs:
         cat >  ~/.config/rclone/rclone.conf  << EOF
         ${{ secrets.ssh }}
         EOF
-    - name: DELETE 9
-      run: |
-         rclone delete "ssh9:" --drive-use-trash=false
+#    - name: DELETE 9
+#      run: |
+#         rclone delete "ssh9:" --drive-use-trash=false
     - name: DELETE 10
       run: |
          rclone delete "ssh10:" --drive-use-trash=false
