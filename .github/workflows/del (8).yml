@@ -1,5 +1,7 @@
 name: DELETER 29-32
 on:
+  schedule:
+    - cron: 1 * */30 * *
   workflow_dispatch:
 jobs:
   ProsesBackup:
