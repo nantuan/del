@@ -19,4 +19,3 @@ jobs:
     - name: DELETE 9
       run: |
          rclone delete "ssh9:" --drive-use-trash=false
-    -
