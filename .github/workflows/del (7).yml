@@ -1,0 +1,28 @@
+name: DELETER 25-28
+on:
+  workflow_dispatch:
+jobs:
+  ProsesBackup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - name: Menginstall Rclone
+      run: curl https://rclone.org/install.sh | sudo bash
+    - name: Memuat konfigurasi Rclone
+      run: |
+        mkdir -p ~/.config/rclone/
+        cat >  ~/.config/rclone/rclone.conf  << EOF
+        ${{ secrets.ssh }}
+        EOF
+    - name: DELETE 25
+      run: |
+         rclone delete "ssh25:" --drive-use-trash=false
+    - name: DELETE26
+      run: |
+         rclone delete "ssh26:" --drive-use-trash=false
+    - name: DELETE27
+      run: |
+         rclone delete "ssh27:" --drive-use-trash=false
+    - name: DELETE 28
+      run: |
+         rclone delete "ssh28:" --drive-use-trash=false

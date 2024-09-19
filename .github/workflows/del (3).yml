@@ -1,0 +1,28 @@
+name: DELETER 9-12
+on:
+  workflow_dispatch:
+jobs:
+  ProsesBackup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - name: Menginstall Rclone
+      run: curl https://rclone.org/install.sh | sudo bash
+    - name: Memuat konfigurasi Rclone
+      run: |
+        mkdir -p ~/.config/rclone/
+        cat >  ~/.config/rclone/rclone.conf  << EOF
+        ${{ secrets.ssh }}
+        EOF
+    - name: DELETE 9
+      run: |
+         rclone delete "ssh9:" --drive-use-trash=false
+    - name: DELETE 10
+      run: |
+         rclone delete "ssh10:" --drive-use-trash=false
+    - name: DELETE 11
+      run: |
+         rclone delete "ssh11:" --drive-use-trash=false
+    - name: DELETE 12
+      run: |
+         rclone delete "ssh12:" --drive-use-trash=false

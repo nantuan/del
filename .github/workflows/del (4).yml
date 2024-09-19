@@ -1,0 +1,28 @@
+name: DELETER 13-16
+on:
+  workflow_dispatch:
+jobs:
+  ProsesBackup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - name: Menginstall Rclone
+      run: curl https://rclone.org/install.sh | sudo bash
+    - name: Memuat konfigurasi Rclone
+      run: |
+        mkdir -p ~/.config/rclone/
+        cat >  ~/.config/rclone/rclone.conf  << EOF
+        ${{ secrets.ssh }}
+        EOF
+    - name: DELETE 13
+      run: |
+         rclone delete "ssh13:" --drive-use-trash=false
+    - name: DELETE 14
+      run: |
+         rclone delete "ssh14:" --drive-use-trash=false
+    - name: DELETE 15
+      run: |
+         rclone delete "ssh15:" --drive-use-trash=false
+    - name: DELETE 16
+      run: |
+         rclone delete "ssh16:" --drive-use-trash=false

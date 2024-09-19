@@ -1,0 +1,28 @@
+name: DELETER 37-40
+on:
+  workflow_dispatch:
+jobs:
+  ProsesBackup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - name: Menginstall Rclone
+      run: curl https://rclone.org/install.sh | sudo bash
+    - name: Memuat konfigurasi Rclone
+      run: |
+        mkdir -p ~/.config/rclone/
+        cat >  ~/.config/rclone/rclone.conf  << EOF
+        ${{ secrets.ssh }}
+        EOF
+    - name: DELETE 37
+      run: |
+         rclone delete "ssh37:" --drive-use-trash=false
+    - name: DELETE 38
+      run: |
+         rclone delete "ssh38:" --drive-use-trash=false
+    - name: DELETE 39
+      run: |
+         rclone delete "ssh39:" --drive-use-trash=false
+#    - name: DELETE 40
+#      run: |
+#         rclone delete "ssh40:" --drive-use-trash=false
